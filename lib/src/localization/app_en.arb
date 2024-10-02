@@ -1,0 +1,6 @@
+{
+  "appTitle": "metro_sp_totem",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
