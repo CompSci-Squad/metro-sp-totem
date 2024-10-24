@@ -19,7 +19,7 @@ class _TotemScreen1State extends State<TotemScreen1> {
   late List<CameraDescription> cameras;
   late CameraController cameraController;
   final String backendServer = dotenv.get("BACKEND_URL");
-  final String backendReceiver = dotenv.get("SLA");
+  final String backendReceiver = dotenv.get("SLA", fallback: "SLA");
 
   @override
   void initState() {
