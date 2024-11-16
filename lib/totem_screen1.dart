@@ -108,7 +108,124 @@ Future<XFile?> transformPicture(XFile jpeg) async {
   });
 }
 
-  @override
+//class TotemReconhecimentoFacial extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+  if (cameraController.value.isInitialized) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          // Visualização da câmera, restrita ao quadrado azul
+          Align(
+            alignment: Alignment.center,
+            child: ClipRect(
+              child: Container(
+                height: 300,
+                width: 300,
+                child: OverflowBox(
+                  alignment: Alignment.center,
+                  child: CameraPreview(cameraController),
+                ),
+              ),
+            ),
+          ),
+          // Sobreposição de textos, quadrado azul e botão
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 50), // Ajuste o espaçamento para alinhar os elementos
+              _buildTextSection(),
+              SizedBox(height: 25),
+              _buildBlueSquare(),
+              Spacer(),
+              _buildHelpButton(context),
+            ],
+          ),
+        ],
+      ),
+    );
+  } else {
+    return const Center(
+      child: CircularProgressIndicator(), // Indicador de carregamento enquanto a câmera inicializa
+    );
+  }
+}
+
+
+
+  Widget _buildTextSection() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: const [
+        Text(
+          'Totem Reconhecimento Facial',
+          style: TextStyle(fontSize: 20,fontFamily: 'Helvetica', fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Acesso Gratuito',
+          style: TextStyle(fontSize: 18, fontFamily: 'Helvetica'),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Centralize seu rosto no retângulo\n de borda azul',
+          style: TextStyle(fontSize: 16, fontFamily: 'Helvetica'),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBlueSquare() {
+    return Center(
+      child: Container(
+        width: 300, // Largura do quadrado azul
+        height: 300, // Altura do quadrado azul
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: const Color(0xFF0059FF), // Cor azul
+            width: 4.0,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHelpButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20), // Espaçamento inferior
+      child: ElevatedButton(
+        onPressed: () {
+          takePicture(context);
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.red, // Cor de fundo vermelho
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30), // Bordas arredondadas
+          ),
+        ),
+        child: const Text(
+          'Preciso de ajuda',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontFamily: 'Helvetica',
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+  /*@override
   Widget build(BuildContext context){
     if (cameraController.value.isInitialized){
       return Scaffold(
@@ -157,4 +274,4 @@ Future<XFile?> transformPicture(XFile jpeg) async {
       return const SizedBox();
     }
   }
-}
+}*/
