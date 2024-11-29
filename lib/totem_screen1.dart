@@ -183,7 +183,7 @@ Widget build(BuildContext context) {
     return Center(
       child: Container(
         width: 300, // Largura do quadrado azul
-        height: 300, // Altura do quadrado azul
+        height: 305, // Altura do quadrado azul
         decoration: BoxDecoration(
           border: Border.all(
             color: const Color(0xFF0059FF), // Cor azul
