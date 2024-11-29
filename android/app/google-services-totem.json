@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "542881182245",
+    "project_id": "metro-teste-4f864",
+    "storage_bucket": "metro-teste-4f864.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542881182245:android:4a8a9542331b4023e085cc",
+        "android_client_info": {
+          "package_name": "com.example.totem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfcuDq7_rW9LnuDUxHgDgZpAU9AeXr6vY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
