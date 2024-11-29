@@ -136,7 +136,7 @@ Widget build(BuildContext context) {
             children: [
               SizedBox(height: 50), // Ajuste o espaçamento para alinhar os elementos
               _buildTextSection(),
-              SizedBox(height: 25),
+              SizedBox(height: 20),
               _buildBlueSquare(),
               Spacer(),
               _buildHelpButton(context),
