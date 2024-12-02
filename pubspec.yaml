@@ -1,32 +1,29 @@
-name: metro_sp_totem
-description: "A new Flutter project."
-
-# Prevent accidental publishing to pub.dev.
-publish_to: 'none'
-
-version: 1.0.0+1
+name: face_camera
+description: A Flutter camera plugin that detects faces in real-time. In addition it can capture automatically once a face is detected, This can be handy while taking a selfie during kyc.
+version: 0.1.4
+homepage: https://github.com/Conezi/face_camera
 
 environment:
-  sdk: ^3.5.0
+  sdk: '>=2.18.4 <4.0.0'
+  flutter: ">=2.5.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
+  camera: ^0.11.0+2
+  google_mlkit_face_detection: ^0.12.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^4.0.0
+  flutter_lints: ^2.0.1
 
 flutter:
-  uses-material-design: true
 
-  # Enable generation of localized Strings from arb files.
-  generate: true
-
-  assets:
-    # Add assets from the images directory to the application.
-    - assets/images/
+  plugin:
+    platforms:
+      android:
+        package: com.conezi.face_camera
+        pluginClass: FaceCameraPlugin
+      ios:
+        pluginClass: FaceCameraPlugin
