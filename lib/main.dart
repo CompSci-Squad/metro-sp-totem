@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:face_camera/face_camera.dart';
+import './services/apiService.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
 
   await FaceCamera.initialize();
@@ -24,6 +26,21 @@ class _MyAppState extends State<MyApp> {
 
   late FaceCameraController controller;
 
+  Future<void> verifyInAi() async {
+    try {
+      final faceData = await apiService.sendImage(
+          url: '/ai', fileFieldName: 'file', file: _capturedImage!);
+      if (faceData["recognized"]) {
+        // Do something with the face data
+        print('Face verified successfully');
+      } else {
+        print('Failed to verify face');
+      }
+    } catch (e) {
+      print('Error verifying face: $e');
+    }
+  }
+
   @override
   void initState() {
     controller = FaceCameraController(
@@ -32,8 +49,10 @@ class _MyAppState extends State<MyApp> {
       onCapture: (File? image) {
         setState(() => _capturedImage = image);
       },
-      onFaceDetected: (Face? face) {
-        //Do something
+      onFaceDetected: (Face? face) async {
+        if (face != null && _capturedImage != null) {
+          await verifyInAi();
+        }
       },
     );
     super.initState();
